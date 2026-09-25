@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ab workout timer</title>
 <style>
-:root{--bg:#fff;--fg:#1a1a1a;--muted:#6b6b6b;--line:#d6d4cd;--card:#f5f4f0;--acc:#D85A30;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#fff;--fg:#1a1a1a;--muted:#6b6b6b;--line:#d6d4cd;--card:#f5f4f0;--acc:#D85A30;box-sizing:border-box}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1c1a;--fg:#f0eee8;--muted:#a09e96;--line:#3a3a37;--card:#262624}}
 :root[data-theme="dark"]{--bg:#1c1c1a;--fg:#f0eee8;--muted:#a09e96;--line:#3a3a37;--card:#262624}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:420px;margin:0 auto;padding:20px 16px 32px;text-align:center}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+main{max-width:420px;margin:0 auto;padding:24px 16px 32px;text-align:center}
 section[hidden]{display:none}
 h1{font-size:22px;font-weight:500;margin:8px 0}
 h2{font-size:20px;font-weight:500;margin:4px 0 0}
@@ -38,6 +38,8 @@ svg line,svg polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
 .grid h3{font-size:14px;font-weight:500;margin:4px 0 0}
 .grid p{font-size:12px;color:var(--muted);margin:0 0 4px}
 .paused *,.sw *{animation-play-state:paused!important}
+.restring{transform-origin:190px 120px;animation:restspin var(--d,30s) linear infinite}
+@keyframes restspin{from{stroke-dashoffset:289}to{stroke-dashoffset:0}}
 .r{transform-origin:var(--o);animation:rot var(--d,3s) ease-in-out infinite}
 .gl{animation:gl var(--d,3s) ease-in-out infinite}
 @keyframes rot{0%,10%{transform:rotate(var(--a,0deg))}45%,55%{transform:rotate(var(--b,0deg))}90%,100%{transform:rotate(var(--a,0deg))}}
@@ -79,6 +81,7 @@ svg line,svg polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
 <p class="m">How long do you want to exercise?</p>
 <div class="chips" id="chips"><button>5</button><button>10</button><button>15</button><button>20</button></div>
 <label>Minutes <input id="mins" type="number" min="1" max="120" value="10" inputmode="numeric"></label>
+<label>Final plank hold (seconds) <input id="pd" type="number" min="10" max="600" value="60" inputmode="numeric"></label>
 <p class="m" id="sum"></p>
 <label><input type="checkbox" id="snd" checked> Sound</label>
 <button class="pri" id="go">Start</button>
@@ -116,9 +119,10 @@ const LT=L(206,194,116,194,'p',8)+HD(96,192)+AB(170,194);
 const F2='<line class="fl" x1="60" y1="230" x2="320" y2="230"/>';
 const DB=(k,arm,st='')=>R(206,194,0,70,L(206,194,206,140,k)+R(206,140,0,-90,L(206,140,256,140,k),st),st)+R(126,192,0,-65,L(126,192,126,132,arm,5),st);
 const FL='<line class="fl" x1="50" y1="202" x2="340" y2="202"/>';
+const PLANK={n:"Plank",c:"One straight line, glutes tight",s:FL+'<line class="gd" stroke-width="1.5" x1="87" y1="116" x2="307" y2="165"/><polyline class="s" stroke-width="6" points="68,194 110,194 112,152"/><polyline class="p" stroke-width="8" points="112,152 290,192 293,197"/><ellipse class="ab pg" cx="175" cy="166" rx="28" ry="5" transform="rotate(12.7 175 166)"/><circle class="hd" cx="93" cy="148" r="9"/>'};
+const REST='<svg viewBox="0 0 380 240" role="img" aria-label="Rest"><circle cx="190" cy="120" r="46" fill="none" stroke="var(--line)" stroke-width="6"/><circle cx="190" cy="120" r="46" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" stroke-dasharray="289" class="restring"/><text x="190" y="128" text-anchor="middle" font-size="20" fill="var(--muted)">Rest</text></svg>';
 const E=[
 {n:"Crunch",c:"Lift shoulders a few inches, exhale on the way up",s:FL+'<polyline class="p" stroke-width="7" points="206,194 258,146 280,194 294,194"/><g class="cr"><line class="p" stroke-width="8" x1="206" y1="194" x2="116" y2="194"/><ellipse class="ab cg" cx="170" cy="194" rx="26" ry="5"/><circle class="hd" cx="96" cy="192" r="9"/><polyline class="s" stroke-width="5" points="126,192 108,170 96,186"/></g>'},
-{n:"Plank",c:"One straight line, glutes tight",s:FL+'<line class="gd" stroke-width="1.5" x1="87" y1="116" x2="307" y2="165"/><polyline class="s" stroke-width="6" points="68,194 110,194 112,152"/><polyline class="p" stroke-width="8" points="112,152 290,192 293,197"/><ellipse class="ab pg" cx="175" cy="166" rx="28" ry="5" transform="rotate(12.7 175 166)"/><circle class="hd" cx="93" cy="148" r="9"/>'},
 {n:"Bicycle crunch",c:"Elbow to opposite knee, go slow",s:FL+'<g class="t2"><line class="s" stroke-width="7" x1="206" y1="194" x2="261" y2="194"/><g class="k2"><line class="s" stroke-width="7" x1="261" y1="194" x2="316" y2="194"/></g></g><g class="t1"><line class="p" stroke-width="7" x1="206" y1="194" x2="261" y2="194"/><g class="k1"><line class="p" stroke-width="7" x1="261" y1="194" x2="316" y2="194"/></g></g><g class="bt"><line class="p" stroke-width="8" x1="206" y1="194" x2="116" y2="194"/><ellipse class="ab bg" cx="170" cy="194" rx="26" ry="5"/><circle class="hd" cx="96" cy="192" r="9"/><polyline class="s" stroke-width="5" points="126,192 108,170 96,186"/></g>'},
 {n:"Leg raise",c:"Keep your lower back pressed into the floor",s:'<line class="fl" x1="30" y1="202" x2="350" y2="202"/><line class="p" stroke-width="8" x1="180" y1="194" x2="90" y2="194"/><ellipse class="ab lgl" cx="155" cy="194" rx="24" ry="5"/><circle class="hd" cx="70" cy="192" r="9"/><g class="lg"><polyline class="p" stroke-width="7" points="180,194 300,194 302,183"/></g>'},
 {n:"Russian twist",c:"Feet up, chest tall, rotate the ribcage",s:'<line class="fl" x1="60" y1="230" x2="320" y2="230"/><polyline class="p" stroke-width="7" points="172,216 166,192 190,222 214,192 208,216"/><line class="p" stroke-width="8" x1="190" y1="222" x2="190" y2="144"/><ellipse class="ab oa" cx="176" cy="172" rx="6" ry="14"/><ellipse class="ab ob" cx="204" cy="172" rx="6" ry="14"/><g class="sb"><line class="p" stroke-width="7" x1="162" y1="144" x2="218" y2="144"/></g><circle class="hd" cx="190" cy="126" r="10"/><g class="ar"><line class="s" stroke-width="5" x1="190" y1="144" x2="190" y2="188"/><circle cx="190" cy="192" r="7" style="fill:var(--muted)"/></g>'},
@@ -134,10 +138,18 @@ const E=[
 {n:"Flutter kicks",c:"Small fast kicks, lower back pressed down",d:"1.2s",s:FL+LT+R(206,194,-8,-32,L(206,194,316,194,'s'))+R(206,194,-8,-32,L(206,194,316,194),'animation-delay:-.6s')},
 {n:"Side reaches",c:"Knees bent, reach to touch each side of your feet",s:P('158,196 172,176 190,168 208,176 222,196')+L(150,198,166,198,'p',6)+L(214,198,230,198,'p',6)+R(190,168,-24,24,L(190,168,190,98,'p',8)+L(164,100,216,100,'p',7)+L(164,100,146,160,'s',5)+L(216,100,234,160,'s',5)+HD(190,80)+AB(178,140,5,16)+AB(202,140,5,16,'','animation-delay:-1.5s'))},
 {n:"Toe reaches",c:"Legs vertical, reach hands to your toes",s:FL+P('206,194 206,84 218,84')+R(206,194,0,42,LT+L(126,192,126,127,'s',5))},
-{n:"Dead bug",c:"Opposite arm and leg, back flat",d:"4s",s:FL+LT+DB('p','s')+DB('s','p','animation-delay:-2s')}
+{n:"Dead bug",c:"Opposite arm and leg, back flat",d:"4s",s:FL+LT+DB('p','s')+DB('s','p','animation-delay:-2s')},
+{n:"6 inches and hold",c:"Legs straight, heels a few inches off the floor",s:FL+L(180,194,90,194,'p',8)+HD(70,192)+L(180,194,300,188,'p',7)+AB(155,194,24,5)},
+{n:"The 100",c:"Pump straight arms up and down, breathe in for 5, out for 5",s:FL+R(206,194,30,30,LT)+R(206,194,-16,-16,L(206,194,306,182))+R(126,190,-16,16,L(126,190,104,206,'s',5),'--d:0.6s')},
+{n:"Scissor Kicks",c:"Straight legs, small fast alternating scissors",d:"1.6s",s:FL+LT+R(206,194,-15,-60,L(206,194,316,194,'s'))+R(206,194,-15,-60,L(206,194,316,194),'animation-delay:-.8s')},
+{n:"In and Out Abs",c:"Tuck knees in, then extend legs and torso out",d:"2.4s",s:FL+R(206,194,20,20,LT)+R(206,194,-80,-8,L(206,194,300,186))},
+{n:"Wipers",c:"Legs up, rotate them side to side like windshield wipers",d:"3.2s",s:F2+L(190,225,190,168,'p',8)+HD(190,150)+AB(190,210,26,5)+R(190,168,-35,35,L(190,168,190,90,'p',7))},
+{n:"Hollow Hold",c:"Lower back pressed down, arms and legs extended, banana shape",s:P('50,150 100,182 230,196 320,165')+HD(112,178,8)+AB(175,194,30,5)},
+{n:"Side Plank",sw:1,c:"Straight line from head to feet, hips lifted. Switch sides halfway",s:'<line class="fl" x1="60" y1="198" x2="320" y2="198"/>'+P('112,196 150,196 150,148','s',6)+L(225,172,300,196,'s',6)+P('150,148 225,172 300,196','p',8)+HD(131,142)+AB(188,160,26,5,'rotate(17.7 188 160)')},
+{n:"V Situp and Hold",c:"Balance on your sit bones, torso and legs in a V",s:FL+R(206,194,55,55,LT)+R(206,194,-55,-55,L(206,194,316,194))}
 ];
 const S=33,B=30,W=165,$=id=>document.getElementById(id);
-let T,t0,off,pz,ss,sg,wk,n0,q,pv,nq,tm,ac,last,cur;
+let T,t0,off,pz,ss,sg,wk,n0,q,pv,nq,tm,ac,last,cur,PD,plankDone;
 const svg=(s,d)=>'<svg viewBox="0 0 380 240" role="img" aria-label="Exercise animation" style="--d:'+(d||'3s')+'">'+s+'</svg>';
 const show=id=>['setup','run','done','lib'].forEach(x=>$(x).hidden=x!==id);
 const f=s=>{s=Math.max(0,Math.ceil(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
@@ -151,9 +163,20 @@ function beep(fr,d){
     o.start();o.stop(ac.currentTime+d);
   }catch(e){}
 }
+function announce(text){
+  if(!$('snd').checked)return;
+  try{
+    if(!('speechSynthesis' in window))return;
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.rate=1;u.volume=1;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
 function mins(){return Math.min(120,Math.max(1,parseFloat($('mins').value)||10))}
+function plankSecs(){return Math.min(600,Math.max(5,parseInt($('pd').value)||60))}
 function plan(t){let s=0,w=0,x=0,b=0;for(;;){const r=t-s;if(w>=W&&r>=S+B){s+=B;w=0;b++}else if(r>=S){s+=S;w+=S;x++}else return[x,b]}}
-function sum(){const m=mins(),p=plan(m*60);$('sum').textContent=m+' min = about '+p[0]+' exercises and '+p[1]+' breaks (30s each)'}
+function sum(){const m=mins(),p=plan(m*60);$('sum').textContent=m+' min = about '+p[0]+' exercises and '+p[1]+' breaks (30s each), plus a plank to finish'}
 function draw(){
   if(!q.length){
     q=E.map((_,i)=>i);
@@ -164,14 +187,16 @@ function draw(){
 }
 function go(at){
   const r=T-at;
-  if(sg)wk=sg.k==='b'?0:wk+(at-ss);
+  if(sg)wk=sg.k==='x'?wk+(at-ss):(sg.k==='b'?0:wk);
   if(wk>=W&&r>=S+B)sg={k:'b',d:B,e:nq};
   else if(r>=(E[nq].sw?S+5:S)){sg={k:'x',d:E[nq].sw?S+5:S,e:nq};nq=draw();n0++}
+  else if(!plankDone){plankDone=true;sg={k:'pl',d:PD}}
   else return false;
   ss=at;cur=null;last='';return true;
 }
 function start(){
-  T=mins()*60;t0=Date.now();off=0;pz=0;ss=0;wk=0;n0=0;q=[];pv=-1;sg=null;cur=null;last='';
+  T=mins()*60;PD=plankSecs();plankDone=false;
+  t0=Date.now();off=0;pz=0;ss=0;wk=0;n0=0;q=[];pv=-1;sg=null;cur=null;last='';
   nq=draw();go(0);
   $('pz').textContent='Pause';$('stage').classList.remove('paused');
   show('run');
@@ -182,15 +207,18 @@ function tick(force){
   if(pz&&force!==true)return;
   const el=clk();
   while(el>=ss+sg.d){if(!go(ss+sg.d))return done()}
-  const w=el-ss,b=sg.k==='b',e=E[sg.e],r=T-(ss+sg.d);
+  const w=el-ss,b=sg.k==='b',pl=sg.k==='pl',e=pl?PLANK:E[sg.e],r=T-(ss+sg.d);
   if(cur!==sg){
     cur=sg;
-    $('art').innerHTML=svg(e.s,e.d);
+    $('art').innerHTML=b?REST:svg(e.s,e.d);
     $('nm').textContent=b?'Break':e.n;
-    $('cue').textContent=b?'Up next: '+e.n:e.c;
+    announce(b?'Break':e.n);
   }
-  $('cnt').textContent='Exercise '+n0+' \u00b7 '+f(T-el)+' left';
-  $('nxt').textContent=b?'':r<S?'Last one':(wk+sg.d>=W&&r>=S+B)?'Next: Break':'Next: '+E[nq].n;
+  if(pl){$('cnt').textContent='Final plank hold';$('nxt').textContent='';}
+  else{
+    $('cnt').textContent='Exercise '+n0+' \u00b7 '+f(T-el)+' left';
+    $('nxt').textContent=b?'':r<S?'Last one, then a plank to finish':(wk+sg.d>=W&&r>=S+B)?'Next: Break':'Next: '+E[nq].n;
+  }
   let n,ph;
   if(b){n=Math.ceil(B-w);ph=3}
   else if(w<3){n=Math.ceil(3-w);ph=0}
@@ -202,25 +230,27 @@ function tick(force){
   $('lab').textContent=['Get ready','Go','Finish strong','Break','Switch sides'][ph];
   $('cue').textContent=b?'Up next: '+e.n:ph===4?'Switch to your other side':e.c;
   $('stage').classList.toggle('sw',ph===4);
-  $('fill').style.width=Math.min(100,el/T*100)+'%';
-  const k=n0+'-'+ph+'-'+n;
+  $('fill').style.width=(pl?100:Math.min(100,el/T*100))+'%';
+  const k=n0+'-'+(pl?'p':'x')+'-'+ph+'-'+n;
   if(k!==last){
     last=k;
     if(ph===3){if(n===B)beep(520,.4)}
     else if(ph===4){if(n===5)beep(520,.4)}
     else if(ph===1){if(n===(e.sw?15:30))beep(880,.35)}
-    else beep(ph?440:660,.12);
+    else if(ph===2){beep(440,n===1?.45:.12)}
+    else beep(660,.12);
   }
 }
 function done(){
   clearInterval(tm);beep(880,.5);
-  $('sum2').textContent=n0+' exercises completed';
+  $('sum2').textContent=n0+' exercises completed, plus a '+PD+'s plank';
   show('done');
 }
 $('sk').onclick=()=>{if(!go(clk()))done();else tick(true)};
 $('lb').onclick=()=>{
-  $('lcount').textContent=E.length+' exercises in the rotation';
-  $('grid').innerHTML=E.map(e=>'<div class="card">'+svg(e.s,e.d)+'<h3>'+e.n+'</h3><p>'+e.c+'</p></div>').join('');
+  const all=E.concat([PLANK]);
+  $('lcount').textContent=E.length+' exercises in the rotation, plus a final plank hold';
+  $('grid').innerHTML=all.map(e=>'<div class="card">'+svg(e.s,e.d)+'<h3>'+e.n+'</h3><p>'+e.c+'</p></div>').join('');
   show('lib');window.scrollTo(0,0);
 };
 $('lback').onclick=()=>show('setup');
