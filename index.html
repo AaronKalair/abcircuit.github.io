@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ab workout timer</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <style>
 :root{--bg:#fff;--fg:#1a1a1a;--muted:#6b6b6b;--line:#d6d4cd;--card:#f5f4f0;--acc:#D85A30;box-sizing:border-box}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1c1a;--fg:#f0eee8;--muted:#a09e96;--line:#3a3a37;--card:#262624}}
@@ -41,6 +42,12 @@ svg line,svg polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
 .paused *,.sw *{animation-play-state:paused!important}
 .restring{transform-origin:190px 120px;animation:restspin var(--d,30s) linear infinite}
 @keyframes restspin{from{stroke-dashoffset:289}to{stroke-dashoffset:0}}
+.iwA{transform-origin:280px 196px;animation:iwA 6s ease-in-out infinite}
+.iwB{transform-origin:240px 116px;animation:iwB 6s ease-in-out infinite}
+.iwC{transform-origin:214px 166px;animation:iwC 6s ease-in-out infinite}
+@keyframes iwA{0%,8%{transform:rotate(0deg)}35%,45%{transform:rotate(-51deg)}65%{transform:rotate(0deg)}85%,95%{transform:rotate(26.6deg)}100%{transform:rotate(0deg)}}
+@keyframes iwB{0%,8%{transform:rotate(0deg)}35%,45%{transform:rotate(125.5deg)}65%{transform:rotate(0deg)}85%,95%{transform:rotate(126deg)}100%{transform:rotate(0deg)}}
+@keyframes iwC{0%,8%{transform:rotate(0deg)}35%,45%{transform:rotate(-74.5deg)}65%{transform:rotate(0deg)}85%,95%{transform:rotate(-152.5deg)}100%{transform:rotate(0deg)}}
 .r{transform-origin:var(--o);animation:rot var(--d,3s) ease-in-out infinite}
 .gl{animation:gl var(--d,3s) ease-in-out infinite}
 @keyframes rot{0%,10%{transform:rotate(var(--a,0deg))}45%,55%{transform:rotate(var(--b,0deg))}90%,100%{transform:rotate(var(--a,0deg))}}
@@ -131,20 +138,20 @@ const E=[
 {n:"Side plank leg raise",sw:1,c:"Hips high, lift the top leg. Switch sides halfway",s:FL+P('112,196 150,196 150,148','s',6)+R(225,172,0,-30,L(225,172,300,196,'s'))+P('150,148 225,172 300,196','p',8)+HD(131,142)+AB(188,160,26,5,'rotate(17.7 188 160)')},
 {n:"Situp",c:"Curl all the way up, lower with control",d:"3.6s",s:FL+P('206,194 258,146 280,194 294,194')+R(206,194,0,80,LT+P('126,192 108,170 96,186','s',5))},
 {n:"Reverse curl",c:"Curl knees to chest and lift hips off the floor",s:FL+HD(96,192)+R(116,194,0,-7,L(206,194,116,194,'p',8)+AB(170,194)+R(206,194,0,-40,P('206,194 236,142 296,150')))},
-{n:"Bird dog",c:"Opposite arm and leg, keep hips level",d:"4s",s:FL+L(120,140,120,194,'s')+P('240,140 240,194 290,194','s')+L(120,140,240,140,'p',8)+HD(100,156)+AB(180,140,30)+R(120,140,0,90,L(120,140,120,194))+R(240,140,0,-90,L(240,140,240,194)+R(240,194,0,90,L(240,194,290,194)))},
+{n:"Bird dog",c:"Extend the front leg and back leg together, keep hips level",d:"4s",s:FL+L(120,140,240,140,'p',8)+HD(100,156)+AB(180,140,30)+R(120,140,0,-100,L(120,140,120,194,'p',6))+R(240,140,0,100,L(240,140,240,194,'p',6))},
 {n:"Superman",c:"Lift arms, chest and legs together",s:FL+R(206,194,0,12,L(206,194,150,194,'p',8)+L(150,192,76,192,'s',5)+HD(136,186)+AB(185,194,18))+R(206,194,0,-14,L(206,194,316,194))},
 {n:"Swimmer",c:"Flutter opposite arm and leg, chest lifted",d:"2s",s:FL+L(206,194,150,194,'p',8)+AB(185,194,18)+R(150,192,0,16,L(150,192,76,192,'s',5))+R(206,194,0,-16,L(206,194,316,194,'p'))+R(150,192,0,16,L(150,192,76,192,'p',5),'animation-delay:-1s')+R(206,194,0,-16,L(206,194,316,194,'s'),'animation-delay:-1s')+HD(136,186)},
 {n:"Windmill",c:"Reach to the opposite foot, other arm up",d:"4s",s:F2+P('122,228 190,150 258,228')+R(190,150,-120,120,L(190,150,190,84,'p',8)+L(150,84,230,84,'s',5)+HD(190,70)+AB(190,118,5,16))},
-{n:"Inchworm",c:"Walk hands out to plank, then back",d:"4s",s:FL+R(280,196,0,-51,L(280,196,240,116)+R(240,116,0,125.5,L(240,116,214,166,'p',8)+HD(206,180)+R(214,166,0,-74.5,L(214,166,214,196,'s',6))))},
+{n:"Inchworm",c:"Walk hands out to plank, walk back, then stand up fully",s:FL+'<g class="iwA">'+L(280,196,240,116,'p',8)+'<g class="iwB">'+L(240,116,214,166,'p',8)+HD(206,180)+'<g class="iwC">'+L(214,166,214,196,'s',6)+'</g></g></g>'},
 {n:"Flutter kicks",c:"Small fast kicks, lower back pressed down",d:"1.2s",s:FL+LT+R(206,194,-8,-32,L(206,194,316,194,'s'))+R(206,194,-8,-32,L(206,194,316,194),'animation-delay:-.6s')},
 {n:"Side reaches",c:"Knees bent, reach to touch each side of your feet",s:P('158,196 172,176 190,168 208,176 222,196')+L(150,198,166,198,'p',6)+L(214,198,230,198,'p',6)+R(190,168,-24,24,L(190,168,190,98,'p',8)+L(164,100,216,100,'p',7)+L(164,100,146,160,'s',5)+L(216,100,234,160,'s',5)+HD(190,80)+AB(178,140,5,16)+AB(202,140,5,16,'','animation-delay:-1.5s'))},
 {n:"Toe reaches",c:"Legs vertical, reach hands to your toes",s:FL+P('206,194 206,84 218,84')+R(206,194,0,42,LT+L(126,192,126,127,'s',5))},
 {n:"Dead bug",c:"Opposite arm and leg, back flat",d:"4s",s:FL+LT+DB('p','s')+DB('s','p','animation-delay:-2s')},
 {n:"6 inches and hold",c:"Legs straight, heels a few inches off the floor",s:FL+L(180,194,90,194,'p',8)+HD(70,192)+L(180,194,300,188,'p',7)+AB(155,194,24,5)},
-{n:"The 100",c:"Pump straight arms up and down, breathe in for 5, out for 5",s:FL+R(206,194,30,30,LT)+R(206,194,-16,-16,L(206,194,306,182))+R(126,190,-16,16,L(126,190,104,206,'s',5),'--d:0.6s')},
+{n:"The 100",c:"Pump straight arms forward and back, breathe in for 5, out for 5",s:FL+R(206,194,30,30,LT+R(108,188,-8,8,L(108,188,196,174,'p',5),'--d:0.6s'))+R(206,194,-16,-16,L(206,194,306,182))},
 {n:"Scissor Kicks",c:"Straight legs, small fast alternating scissors",d:"1.6s",s:FL+LT+R(206,194,-15,-60,L(206,194,316,194,'s'))+R(206,194,-15,-60,L(206,194,316,194),'animation-delay:-.8s')},
-{n:"In and Out Abs",c:"Tuck knees in, then extend legs and torso out",d:"2.4s",s:FL+R(206,194,20,20,LT)+R(206,194,-80,-8,L(206,194,300,186))},
-{n:"Wipers",c:"Legs up, rotate them side to side like windshield wipers",d:"3.2s",s:F2+L(190,225,190,168,'p',8)+HD(190,150)+AB(190,210,26,5)+R(190,168,-35,35,L(190,168,190,90,'p',7))},
+{n:"In and Out Abs",c:"Hug your knees to your chest, then extend legs and torso out",d:"2.4s",s:FL+R(206,194,20,20,LT)+R(206,194,-65,-18,L(206,194,261,194,'p',7)+R(261,194,70,0,L(261,194,316,194,'p',7)))},
+{n:"Wipers",c:"Legs up, rotate them side to side like windshield wipers",d:"3.2s",s:FL+L(180,194,90,194,'p',8)+HD(70,192)+AB(155,194,24,5)+R(180,194,-35,35,L(180,194,180,90,'p',7))},
 {n:"Hollow Hold",c:"Lower back pressed down, arms and legs extended, banana shape",s:P('50,150 100,182 230,196 320,165')+HD(112,178,8)+AB(175,194,30,5)},
 {n:"Side Plank",sw:1,c:"Straight line from head to feet, hips lifted. Switch sides halfway",s:'<line class="fl" x1="60" y1="198" x2="320" y2="198"/>'+P('112,196 150,196 150,148','s',6)+L(225,172,300,196,'s',6)+P('150,148 225,172 300,196','p',8)+HD(131,142)+AB(188,160,26,5,'rotate(17.7 188 160)')},
 {n:"V Situp and Hold",c:"Balance on your sit bones, torso and legs in a V",s:FL+R(206,194,55,55,LT)+R(206,194,-55,-55,L(206,194,316,194))}
