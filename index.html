@@ -133,12 +133,12 @@ const E=[
 {n:"Crunch",c:"Lift shoulders a few inches, exhale on the way up",s:FL+'<polyline class="p" stroke-width="7" points="206,194 258,146 280,194 294,194"/><g class="cr"><line class="p" stroke-width="8" x1="206" y1="194" x2="116" y2="194"/><ellipse class="ab cg" cx="170" cy="194" rx="26" ry="5"/><circle class="hd" cx="96" cy="192" r="9"/><polyline class="s" stroke-width="5" points="126,192 108,170 96,186"/></g>'},
 {n:"Bicycle crunch",c:"Elbow to opposite knee, go slow",s:FL+'<g class="t2"><line class="s" stroke-width="7" x1="206" y1="194" x2="261" y2="194"/><g class="k2"><line class="s" stroke-width="7" x1="261" y1="194" x2="316" y2="194"/></g></g><g class="t1"><line class="p" stroke-width="7" x1="206" y1="194" x2="261" y2="194"/><g class="k1"><line class="p" stroke-width="7" x1="261" y1="194" x2="316" y2="194"/></g></g><g class="bt"><line class="p" stroke-width="8" x1="206" y1="194" x2="116" y2="194"/><ellipse class="ab bg" cx="170" cy="194" rx="26" ry="5"/><circle class="hd" cx="96" cy="192" r="9"/><polyline class="s" stroke-width="5" points="126,192 108,170 96,186"/></g>'},
 {n:"Leg raise",c:"Keep your lower back pressed into the floor",s:'<line class="fl" x1="30" y1="202" x2="350" y2="202"/><line class="p" stroke-width="8" x1="180" y1="194" x2="90" y2="194"/><ellipse class="ab lgl" cx="155" cy="194" rx="24" ry="5"/><circle class="hd" cx="70" cy="192" r="9"/><g class="lg"><polyline class="p" stroke-width="7" points="180,194 300,194 302,183"/></g>'},
-{n:"Russian twist",c:"Feet up, chest tall, rotate the ribcage",s:'<line class="fl" x1="60" y1="230" x2="320" y2="230"/><polyline class="p" stroke-width="7" points="172,216 166,192 190,222 214,192 208,216"/><line class="p" stroke-width="8" x1="190" y1="222" x2="190" y2="144"/><ellipse class="ab oa" cx="176" cy="172" rx="6" ry="14"/><ellipse class="ab ob" cx="204" cy="172" rx="6" ry="14"/><g class="sb"><line class="p" stroke-width="7" x1="162" y1="144" x2="218" y2="144"/></g><circle class="hd" cx="190" cy="126" r="10"/><g class="ar"><line class="s" stroke-width="5" x1="190" y1="144" x2="190" y2="188"/><circle cx="190" cy="192" r="7" style="fill:var(--muted)"/></g>'},
+{n:"Russian twist",c:"Feet up, chest tall, rotate the ribcage",s:'<line class="fl" x1="60" y1="230" x2="320" y2="230"/><polyline class="p" stroke-width="7" points="172,216 166,192 190,222 214,192 208,216"/><line class="p" stroke-width="8" x1="190" y1="222" x2="190" y2="144"/><ellipse class="ab oa" cx="176" cy="172" rx="6" ry="14"/><ellipse class="ab ob" cx="204" cy="172" rx="6" ry="14"/><g class="sb"><line class="p" stroke-width="7" x1="162" y1="144" x2="218" y2="144"/></g><circle class="hd" cx="190" cy="126" r="10"/><g class="ar"><circle cx="190" cy="186" r="7" style="fill:var(--muted)"/></g>'},
 {n:"V-up",c:"Legs and torso rise together into a V",s:FL+R(206,194,0,55,LT)+R(206,194,0,-55,L(206,194,316,194))},
 {n:"Side plank leg raise",sw:1,c:"Hips high, lift the top leg. Switch sides halfway",s:FL+P('112,196 150,196 150,148','s',6)+R(225,172,0,-30,L(225,172,300,196,'s'))+P('150,148 225,172 300,196','p',8)+HD(131,142)+AB(188,160,26,5,'rotate(17.7 188 160)')},
 {n:"Situp",c:"Curl all the way up, lower with control",d:"3.6s",s:FL+P('206,194 258,146 280,194 294,194')+R(206,194,0,80,LT+P('126,192 108,170 96,186','s',5))},
 {n:"Reverse curl",c:"Curl knees to chest and lift hips off the floor",s:FL+HD(96,192)+R(116,194,0,-7,L(206,194,116,194,'p',8)+AB(170,194)+R(206,194,0,-40,P('206,194 236,142 296,150')))},
-{n:"Bird dog",c:"Extend the front leg and back leg together, then switch sides",d:"4s",s:FL+L(120,140,240,140,'p',8)+HD(100,156)+AB(180,140,30)+R(120,140,0,-100,L(120,140,120,194,'p',6))+R(240,140,0,100,L(240,140,240,194,'p',6))+R(120,140,0,-100,L(120,140,120,194,'s',6),'animation-delay:-2s')+R(240,140,0,100,L(240,140,240,194,'s',6),'animation-delay:-2s')},
+{n:"Bird dog",c:"Extend the front leg and back leg together, then switch to the other side",d:"4s",s:FL+L(120,140,240,140,'p',8)+HD(100,156)+AB(180,140,30)+R(120,140,0,100,L(120,140,120,194,'s',6))+R(240,140,0,-100,L(240,140,240,194,'p',6))+R(120,140,0,100,L(120,140,120,194,'p',6),'animation-delay:-2s')+R(240,140,0,-100,L(240,140,240,194,'s',6),'animation-delay:-2s')},
 {n:"Superman",c:"Lift arms, chest and legs together",s:FL+R(206,194,0,12,L(206,194,150,194,'p',8)+L(150,192,76,192,'s',5)+HD(136,186)+AB(185,194,18))+R(206,194,0,-14,L(206,194,316,194))},
 {n:"Swimmer",c:"Flutter opposite arm and leg, chest lifted",d:"2s",s:FL+L(206,194,150,194,'p',8)+AB(185,194,18)+R(150,192,0,16,L(150,192,76,192,'s',5))+R(206,194,0,-16,L(206,194,316,194,'p'))+R(150,192,0,16,L(150,192,76,192,'p',5),'animation-delay:-1s')+R(206,194,0,-16,L(206,194,316,194,'s'),'animation-delay:-1s')+HD(136,186)},
 {n:"Windmill",c:"Reach to the opposite foot, other arm up",d:"4s",s:F2+P('122,228 190,150 258,228')+R(190,150,-120,120,L(190,150,190,84,'p',8)+L(150,84,230,84,'s',5)+HD(190,70)+AB(190,118,5,16))},
@@ -194,9 +194,10 @@ function draw(){
   return pv=q.pop();
 }
 function go(at){
-  if(!sg){sg={k:'intro',d:3};ss=0;cur=null;last='';return true}
+  if(!sg){sg={k:'intro',d:GR};ss=0;cur=null;last='';return true}
   if(sg.k==='intro'){
-    off+=sg.d;
+    off+=sg.d*1000;
+    nq=draw();
     sg={k:'x',d:E[nq].sw?S+SWP:S,e:nq};nq=draw();n0++;
     ss=0;cur=null;last='';return true;
   }
@@ -222,7 +223,10 @@ function tick(force){
   while(clk()>=ss+sg.d){if(!go(ss+sg.d))return done()}
   const el=clk();
   if(sg.k==='intro'){
-    if(cur!==sg){cur=sg;$('art').innerHTML=REST;$('nm').textContent='Get ready';$('cue').textContent='';$('cnt').textContent='Starting\u2026';$('nxt').textContent='';$('num').textContent='';$('lab').textContent='';$('fill').style.width='0%';announce('Get ready')}
+    const wi=el-ss,ni=Math.ceil(sg.d-wi);
+    if(cur!==sg){cur=sg;$('art').innerHTML='';$('nm').textContent='Get ready';$('cue').textContent='';$('cnt').textContent='Starting\u2026';$('nxt').textContent='';$('lab').textContent='Get ready';$('num').className='num';$('fill').style.width='0%';announce('Get ready')}
+    $('num').textContent=ni;
+    if(ni!==last){last=ni;beep(660,.12)}
     return;
   }
   const w=el-ss,b=sg.k==='b',pl=sg.k==='pl',e=pl?PLANK:E[sg.e],r=T-(ss+sg.d);
@@ -254,9 +258,9 @@ function tick(force){
     last=k;
     if(ph===3){if(n===B)beep(520,.4)}
     else if(ph===4){if(n===5)beep(520,.4)}
-    else if(ph===1){if(n===(e.sw?15:Math.ceil(sg.d-GR)))beep(880,.35)}
+    else if(ph===1){if(n===(e.sw?15:Math.ceil(sg.d-GR))){beep(880,.35);announce('Begin')}}
     else if(ph===2){beep(440,n===1?.45:.12)}
-    else{beep(660,.12);if(n===1)announce('Begin')}
+    else beep(660,.12);
   }
 }
 function done(){
