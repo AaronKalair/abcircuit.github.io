@@ -138,7 +138,7 @@ const E=[
 {n:"Side plank leg raise",sw:1,c:"Hips high, lift the top leg. Switch sides halfway",s:FL+P('112,196 150,196 150,148','s',6)+R(225,172,0,-30,L(225,172,300,196,'s'))+P('150,148 225,172 300,196','p',8)+HD(131,142)+AB(188,160,26,5,'rotate(17.7 188 160)')},
 {n:"Situp",c:"Curl all the way up, lower with control",d:"3.6s",s:FL+P('206,194 258,146 280,194 294,194')+R(206,194,0,80,LT+P('126,192 108,170 96,186','s',5))},
 {n:"Reverse curl",c:"Curl knees to chest and lift hips off the floor",s:FL+HD(96,192)+R(116,194,0,-7,L(206,194,116,194,'p',8)+AB(170,194)+R(206,194,0,-40,P('206,194 236,142 296,150')))},
-{n:"Bird dog",c:"Extend the front leg and back leg together, keep hips level",d:"4s",s:FL+L(120,140,240,140,'p',8)+HD(100,156)+AB(180,140,30)+R(120,140,0,-100,L(120,140,120,194,'p',6))+R(240,140,0,100,L(240,140,240,194,'p',6))},
+{n:"Bird dog",c:"Extend the front leg and back leg together, then switch sides",d:"4s",s:FL+L(120,140,240,140,'p',8)+HD(100,156)+AB(180,140,30)+R(120,140,0,-100,L(120,140,120,194,'p',6))+R(240,140,0,100,L(240,140,240,194,'p',6))+R(120,140,0,-100,L(120,140,120,194,'s',6),'animation-delay:-2s')+R(240,140,0,100,L(240,140,240,194,'s',6),'animation-delay:-2s')},
 {n:"Superman",c:"Lift arms, chest and legs together",s:FL+R(206,194,0,12,L(206,194,150,194,'p',8)+L(150,192,76,192,'s',5)+HD(136,186)+AB(185,194,18))+R(206,194,0,-14,L(206,194,316,194))},
 {n:"Swimmer",c:"Flutter opposite arm and leg, chest lifted",d:"2s",s:FL+L(206,194,150,194,'p',8)+AB(185,194,18)+R(150,192,0,16,L(150,192,76,192,'s',5))+R(206,194,0,-16,L(206,194,316,194,'p'))+R(150,192,0,16,L(150,192,76,192,'p',5),'animation-delay:-1s')+R(206,194,0,-16,L(206,194,316,194,'s'),'animation-delay:-1s')+HD(136,186)},
 {n:"Windmill",c:"Reach to the opposite foot, other arm up",d:"4s",s:F2+P('122,228 190,150 258,228')+R(190,150,-120,120,L(190,150,190,84,'p',8)+L(150,84,230,84,'s',5)+HD(190,70)+AB(190,118,5,16))},
@@ -148,10 +148,10 @@ const E=[
 {n:"Toe reaches",c:"Legs vertical, reach hands to your toes",s:FL+P('206,194 206,84 218,84')+R(206,194,0,42,LT+L(126,192,126,127,'s',5))},
 {n:"Dead bug",c:"Opposite arm and leg, back flat",d:"4s",s:FL+LT+DB('p','s')+DB('s','p','animation-delay:-2s')},
 {n:"6 inches and hold",c:"Legs straight, heels a few inches off the floor",s:FL+L(180,194,90,194,'p',8)+HD(70,192)+L(180,194,300,188,'p',7)+AB(155,194,24,5)},
-{n:"The 100",c:"Pump straight arms forward and back, breathe in for 5, out for 5",s:FL+R(206,194,30,30,LT+R(108,188,-8,8,L(108,188,196,174,'p',5),'--d:0.6s'))+R(206,194,-16,-16,L(206,194,306,182))},
+{n:"The 100",c:"Pulse straight arms from the shoulder, small fast pumps",s:FL+R(206,194,30,30,LT+L(160,194,215,185,'p',5)+R(215,185,-10,10,L(215,185,255,178,'p',4),'--d:0.6s'))+R(206,194,-16,-16,L(206,194,306,182))},
 {n:"Scissor Kicks",c:"Straight legs, small fast alternating scissors",d:"1.6s",s:FL+LT+R(206,194,-15,-60,L(206,194,316,194,'s'))+R(206,194,-15,-60,L(206,194,316,194),'animation-delay:-.8s')},
 {n:"In and Out Abs",c:"Hug your knees to your chest, then extend legs and torso out",d:"2.4s",s:FL+R(206,194,20,20,LT)+R(206,194,-65,-18,L(206,194,261,194,'p',7)+R(261,194,70,0,L(261,194,316,194,'p',7)))},
-{n:"Wipers",c:"Legs up, rotate them side to side like windshield wipers",d:"3.2s",s:FL+L(180,194,90,194,'p',8)+HD(70,192)+AB(155,194,24,5)+R(180,194,-35,35,L(180,194,180,90,'p',7))},
+{n:"Wipers",c:"Knees bent, rotate your legs side to side, arms out for balance",d:"3.2s",s:HD(190,40)+L(110,80,270,80,'s',6)+L(190,80,190,150,'p',8)+AB(190,115,14,35)+L(170,150,210,150,'p',7)+R(190,150,-32,32,P('190,150 172,205 190,228 208,205 190,150','p',6))},
 {n:"Hollow Hold",c:"Lower back pressed down, arms and legs extended, banana shape",s:P('50,150 100,182 230,196 320,165')+HD(112,178,8)+AB(175,194,30,5)},
 {n:"Side Plank",sw:1,c:"Straight line from head to feet, hips lifted. Switch sides halfway",s:'<line class="fl" x1="60" y1="198" x2="320" y2="198"/>'+P('112,196 150,196 150,148','s',6)+L(225,172,300,196,'s',6)+P('150,148 225,172 300,196','p',8)+HD(131,142)+AB(188,160,26,5,'rotate(17.7 188 160)')},
 {n:"V Situp and Hold",c:"Balance on your sit bones, torso and legs in a V",s:FL+R(206,194,55,55,LT)+R(206,194,-55,-55,L(206,194,316,194))}
@@ -194,8 +194,14 @@ function draw(){
   return pv=q.pop();
 }
 function go(at){
+  if(!sg){sg={k:'intro',d:3};ss=0;cur=null;last='';return true}
+  if(sg.k==='intro'){
+    off+=sg.d;
+    sg={k:'x',d:E[nq].sw?S+SWP:S,e:nq};nq=draw();n0++;
+    ss=0;cur=null;last='';return true;
+  }
   const r=T-at;
-  if(sg)wk=sg.k==='x'?wk+(at-ss):(sg.k==='b'?0:wk);
+  if(sg.k==='x')wk+=(at-ss);else if(sg.k==='b')wk=0;
   if(wk>=W&&r>=S+B)sg={k:'b',d:B,e:nq};
   else if(r>=(E[nq].sw?S+SWP:S)){sg={k:'x',d:E[nq].sw?S+SWP:S,e:nq};nq=draw();n0++}
   else if(!plankDone){plankDone=true;sg={k:'pl',d:PD}}
@@ -205,7 +211,7 @@ function go(at){
 function start(){
   T=mins()*60;PD=plankSecs();plankDone=false;
   t0=Date.now();off=0;pz=0;ss=0;wk=0;n0=0;q=[];pv=-1;sg=null;cur=null;last='';
-  nq=draw();go(0);
+  go(0);
   $('pz').textContent='Pause';$('stage').classList.remove('paused');
   show('run');
   try{navigator.wakeLock.request('screen').catch(()=>{})}catch(e){}
@@ -213,8 +219,12 @@ function start(){
 }
 function tick(force){
   if(pz&&force!==true)return;
+  while(clk()>=ss+sg.d){if(!go(ss+sg.d))return done()}
   const el=clk();
-  while(el>=ss+sg.d){if(!go(ss+sg.d))return done()}
+  if(sg.k==='intro'){
+    if(cur!==sg){cur=sg;$('art').innerHTML=REST;$('nm').textContent='Get ready';$('cue').textContent='';$('cnt').textContent='Starting\u2026';$('nxt').textContent='';$('num').textContent='';$('lab').textContent='';$('fill').style.width='0%';announce('Get ready')}
+    return;
+  }
   const w=el-ss,b=sg.k==='b',pl=sg.k==='pl',e=pl?PLANK:E[sg.e],r=T-(ss+sg.d);
   if(cur!==sg){
     cur=sg;
@@ -244,13 +254,13 @@ function tick(force){
     last=k;
     if(ph===3){if(n===B)beep(520,.4)}
     else if(ph===4){if(n===5)beep(520,.4)}
-    else if(ph===1){if(n===(e.sw?15:30))beep(880,.35)}
+    else if(ph===1){if(n===(e.sw?15:Math.ceil(sg.d-GR)))beep(880,.35)}
     else if(ph===2){beep(440,n===1?.45:.12)}
-    else beep(660,.12);
+    else{beep(660,.12);if(n===1)announce('Begin')}
   }
 }
 function done(){
-  clearInterval(tm);beep(880,.5);
+  clearInterval(tm);beep(880,.5);announce("You're done");
   $('sum2').textContent=n0+' exercises completed, plus a '+PD+'s plank';
   show('done');
 }
