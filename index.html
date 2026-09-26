@@ -205,7 +205,7 @@ function go(at){
   if(sg.k==='x')wk+=(at-ss);else if(sg.k==='b')wk=0;
   if(wk>=W&&r>=S+B)sg={k:'b',d:B,e:nq};
   else if(r>=(E[nq].sw?S+SWP:S)){sg={k:'x',d:E[nq].sw?S+SWP:S,e:nq};nq=draw();n0++}
-  else if(!plankDone){plankDone=true;sg={k:'pl',d:PD}}
+  else if(!plankDone){plankDone=true;sg={k:'pl',d:GR+PD}}
   else return false;
   ss=at;cur=null;last='';return true;
 }
